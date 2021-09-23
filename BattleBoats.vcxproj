@@ -20,21 +20,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardPiece.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="BattleBoatGame.h" />
+    <ClInclude Include="BattleBoatBoard.h" />
     <ClInclude Include="InputResolver.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerVisibleGameBoard.h" />
-    <ClInclude Include="Ship.h" />
+    <ClInclude Include="Boat.h" />
     <ClInclude Include="Strike.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardPiece.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="BattleBoatGame.cpp" />
+    <ClCompile Include="BattleBoatBoard.cpp" />
+    <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="InputResolver.cpp" />
     <ClCompile Include="PlayerVisibleGameBoard.cpp" />
-    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Boat.cpp" />
     <ClCompile Include="Strike.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

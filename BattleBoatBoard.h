@@ -2,19 +2,19 @@
 
 #include <iostream>
 
-#include "Ship.h"
+#include "Boat.h"
 #include "Strike.h"
 #include "PlayerVisibleGameBoard.h"
 
-class GameBoard {
+class BattleBoatBoard {
 public:
-	bool placeShip(Ship& s);
+	bool placeShip(Boat& s);
 	bool placeStrike(Strike& s);
 	Player& getWinner();
 	PlayerVisibleGameBoard getPlayerBoard(Player& player);
-	friend ostream& operator << (ostream& out, GameBoard board);
+	friend ostream& operator << (ostream& out, BattleBoatBoard board);
 private:
-	Ship* ships;
+	Boat* ships;
 	Strike* strikes;
 	BoardPiece* boardGrid; //3 dimensional array of objects on the gameboard [x][y][i]
 };

@@ -7,7 +7,7 @@ enum Orientation {
 	HORIZONTAL
 };
 
-class Ship : public BoardPiece {
+class Boat : public BoardPiece {
 public:
 private:
 	Orientation orientation;

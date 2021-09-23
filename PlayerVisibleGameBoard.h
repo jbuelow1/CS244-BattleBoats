@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-#include "GameBoard.h"
+#include "BattleBoatBoard.h"
 
-class PlayerVisibleGameBoard : public GameBoard {
+class PlayerVisibleGameBoard : public BattleBoatBoard {
 public:
 	friend ostream& operator << (ostream& out, PlayerVisibleGameBoard board);
 	void setOwner(Player& owner);

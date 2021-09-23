@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GameBoard.h"
+#include "BattleBoatBoard.h"
 #include "Player.h"
 
-class Game {
+class BattleBoatGame {
 public:
-	void start();
+	void playGame();
 private:
-	GameBoard board;
+	BattleBoatBoard board;
 	Player turnOrder[2];
 	int turnIndex;
 	void runTurnForPlayer(Player);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ship.h"
+#include "Boat.h"
 
 class InputResolver {
 public:
