@@ -5,7 +5,7 @@
 
 class Strike : public BoardPiece {
 public:
-	Strike(int location[], Player& owner);
+	Strike(Player& owner, int location[2][10][10]);
 	void computeHit(BattleBoatBoard board);
 	bool getIsHit() const;
 private:

@@ -18,5 +18,5 @@ public:
 private:
 	Boat* ships;
 	Strike* strikes;
-	BoardPiece* boardGrid; //3 dimensional array of objects on the gameboard [x][y][i]
+	BoardPiece* boardGrid[2][10][10][2]; //4 dimensional array of objects on the gameboard [x][y][i]
 };

@@ -9,7 +9,7 @@ enum Orientation {
 
 class Boat : public BoardPiece {
 public:
-	Boat(int size, Orientation orientation);
+	Boat(Player& owner, int location[2][10][10],  int size, Orientation orientation);
 	~Boat();
 	void addStrike(Strike& strike);
 	bool isSunk() const;
