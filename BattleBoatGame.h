@@ -5,6 +5,8 @@
 
 class BattleBoatGame {
 public:
+	BattleBoatGame();
+	~BattleBoatGame();
 	void playGame();
 private:
 	BattleBoatBoard board;

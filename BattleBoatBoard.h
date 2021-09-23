@@ -8,6 +8,8 @@
 
 class BattleBoatBoard {
 public:
+	BattleBoatBoard(int players, int sizeX, int sizeY);
+	~BattleBoatBoard();
 	bool placeShip(Boat& s);
 	bool placeStrike(Strike& s);
 	Player& getWinner();
