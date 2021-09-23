@@ -6,6 +6,6 @@ class BoardPiece {
 public:
 private:
 	Player& owner;
-	int location[2];
+	int location[3];
 };
 

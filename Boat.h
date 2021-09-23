@@ -10,6 +10,9 @@ enum Orientation {
 class Boat : public BoardPiece {
 public:
 private:
+	int boatSize;
 	Orientation orientation;
+	Strike* strikes;
+	int strikeCount;
 	bool isSunken;
 };
