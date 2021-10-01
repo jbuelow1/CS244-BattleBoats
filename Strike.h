@@ -2,6 +2,11 @@
 
 #include "BoardPiece.h"
 #include "Player.h"
+#include "BattleBoatBoard.h"
+
+class Player;
+
+class BattleBoatBoard;
 
 class Strike : public BoardPiece {
 public:

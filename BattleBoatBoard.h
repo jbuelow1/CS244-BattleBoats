@@ -13,7 +13,7 @@ public:
 	bool placeStrike(Strike& s);
 	Player& getWinner();
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
-	friend ostream& operator << (ostream& out, BattleBoatBoard board);
+	friend std::ostream& operator << (std::ostream& out, BattleBoatBoard board);
 private:
 	Boat* ships;
 	Strike* strikes;

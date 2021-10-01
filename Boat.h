@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BoardPiece.h"
+#include "Player.h"
 
 enum Orientation {
 	VERTICAL,

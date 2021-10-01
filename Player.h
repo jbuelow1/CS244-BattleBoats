@@ -9,6 +9,8 @@ enum PlayerType {
 	COMPUTER
 };
 
+class Boat;
+
 class Player {
 public:
 	Player(PlayerType type);
