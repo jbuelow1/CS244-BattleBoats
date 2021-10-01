@@ -8,6 +8,9 @@ enum Orientation {
 	HORIZONTAL
 };
 
+class Player;
+class Strike;
+
 class Boat : public BoardPiece {
 public:
 	Boat(Player& owner, int location[2][10][10],  int size, Orientation orientation);
