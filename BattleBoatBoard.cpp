@@ -1,25 +1,32 @@
 #include "BattleBoatBoard.h"
 
-BattleBoatBoard::BattleBoatBoard(int players, int sizeX, int sizeY) {
+using namespace std;
 
+BattleBoatBoard::BattleBoatBoard(int players, int sizeX, int sizeY) {
+    //TODO: Implement
 }
 
 BattleBoatBoard::~BattleBoatBoard() {
-
+    //TODO: Implement
 }
 
 bool BattleBoatBoard::placeShip(Boat &s) {
+    //TODO: Implement
     return false;
 }
 
 bool BattleBoatBoard::placeStrike(Strike &s) {
+    //TODO: Implement
     return false;
 }
 
 Player &BattleBoatBoard::getWinner() {
-    return <#initializer#>;
+    //TODO: Implement
+    return Player(COMPUTER);
 }
 
 std::ostream &operator<<(std::ostream &out, BattleBoatBoard board) {
-    return <#initializer#>;
+    //TODO: Implement
+    cout << "Printing game board not yet implemented" << endl;
+    return out;
 }

@@ -4,9 +4,9 @@
 #include "Strike.h"
 
 enum PlayerType {
-	HUMAN_A,
-	HUMAN_B,
-	COMPUTER
+	HUMAN_A = 0,
+	HUMAN_B = 1,
+	COMPUTER = -1
 };
 
 class Boat;
