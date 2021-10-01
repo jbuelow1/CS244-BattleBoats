@@ -3,3 +3,15 @@
 BoardPiece::BoardPiece(int *location) {
     //TODO: Implement
 }
+
+int BoardPiece::getPlayerPos() const {
+    return location[0];
+}
+
+int BoardPiece::getX() const {
+    return location[1];
+}
+
+int BoardPiece::getY() const {
+    return location[2];
+}

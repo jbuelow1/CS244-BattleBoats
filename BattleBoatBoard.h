@@ -1,9 +1,12 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 #include "Boat.h"
 #include "Strike.h"
+
+using namespace std;
 
 class BattleBoatBoard {
 public:
@@ -13,9 +16,9 @@ public:
 	bool placeStrike(Strike& s);
 	Player& getWinner();
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
-	friend std::ostream& operator << (std::ostream& out, BattleBoatBoard board);
+	friend ostream& operator << (ostream& out, BattleBoatBoard board);
 private:
 	Boat* ships;
 	Strike* strikes;
-	BoardPiece* boardGrid[2][10][10][2]; //4 dimensional array of objects on the gameboard [x][y][i]
+	vector<vector<vector<vector<BoardPiece*>>>> boardGrid; //4 dimensional array of objects on the gameboard [p][x][y][i]
 };
