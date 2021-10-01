@@ -4,7 +4,6 @@
 
 #include "Boat.h"
 #include "Strike.h"
-#include "PlayerVisibleGameBoard.h"
 
 class BattleBoatBoard {
 public:
@@ -13,7 +12,7 @@ public:
 	bool placeShip(Boat& s);
 	bool placeStrike(Strike& s);
 	Player& getWinner();
-	PlayerVisibleGameBoard getPlayerBoard(Player& player);
+	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
 	friend ostream& operator << (ostream& out, BattleBoatBoard board);
 private:
 	Boat* ships;
