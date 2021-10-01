@@ -5,6 +5,7 @@
 
 class BoardPiece {
 public:
+    BoardPiece(int location[3]);
 private:
 	//Player& owner;
 	int location[3];

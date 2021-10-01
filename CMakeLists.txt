@@ -3,4 +3,4 @@ project(BattleBoats)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(BattleBoats EntryPoint.cpp)
+add_executable(BattleBoats EntryPoint.cpp Player.cpp)
