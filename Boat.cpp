@@ -1,6 +1,6 @@
 #include "Boat.h"
 
-Boat::Boat(Player &owner, int (*location)[10][10], int size, Orientation orientation) {
+Boat::Boat(Player &owner, int location[3], int size, Orientation orientation) : BoardPiece(location) {
     //TODO: Implement
 }
 
@@ -14,5 +14,9 @@ void Boat::addStrike(Strike &strike) {
 
 bool Boat::isSunk() const {
     //TODO: Implement
+    return false;
+}
+
+bool Boat::validatePlacement(BattleBoatBoard *b) {
     return false;
 }

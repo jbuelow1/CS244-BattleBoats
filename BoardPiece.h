@@ -7,7 +7,7 @@ class BattleBoatBoard;
 
 class BoardPiece {
 public:
-    BoardPiece(int playerPos, int location[3]);
+    BoardPiece(int location[3]);
     int getPlayerPos() const;
     int getX() const;
     int getY() const;

@@ -1,6 +1,6 @@
 #include "BoardPiece.h"
 
-BoardPiece::BoardPiece(int *location) {
+BoardPiece::BoardPiece(int location[3]) {
     //TODO: Implement
 }
 
