@@ -1,7 +1,9 @@
 #include "BoardPiece.h"
 
 BoardPiece::BoardPiece(int location[3]) {
-    //TODO: Implement
+    this->location[0] = location[0];
+    this->location[1] = location[1];
+    this->location[2] = location[2];
 }
 
 int BoardPiece::getPlayerPos() const {

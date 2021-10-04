@@ -1,7 +1,7 @@
 #include "Strike.h"
 
 Strike::Strike(Player &owner, int location[3]) : BoardPiece(location) {
-    //TODO: Implement
+
 }
 
 bool Strike::computeHit(BattleBoatBoard& board) {
