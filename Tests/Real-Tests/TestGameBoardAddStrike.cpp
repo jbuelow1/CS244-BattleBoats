@@ -10,6 +10,8 @@ using namespace std;
 class TestGameBoardAddStrike {
 public:
     static bool testStrikeOverlapValidation() {
+        bool failures{false};
+
         BattleBoatBoard *board = new BattleBoatBoard(Options::PLAYER_COUNT, Options::BOARD_SIZE_X, Options::BOARD_SIZE_Y);
         Player *player = new Player(HUMAN_A);
         int location[] = {0,0,0};
@@ -19,8 +21,14 @@ public:
         Strike *strike2 = new Strike(*player, location);
         bool secondStrikeValid = board->placeStrike(*strike2);
 
-        if (!firstStrikeValid) cerr << "TEST FAILURE: Placing a strike that was supposed to succeed has failed!" << endl;
-        if (secondStrikeValid) cerr << "TEST FAILURE: Placing a strike that was supposed to fail has succeeded!" << endl;
+        if (!firstStrikeValid) {
+            cerr << "TEST FAILURE: Placing a strike that was supposed to succeed has failed!" << endl;
+            failures = true;
+        }
+        if (secondStrikeValid) {
+            cerr << "TEST FAILURE: Placing a strike that was supposed to fail has succeeded!" << endl;
+            failures = true;
+        }
 
         // Clean up
         delete player;
@@ -29,22 +37,28 @@ public:
         board = nullptr;
 
         // Verify that the deconstructor for BattleBoatBoard has deleted all the strikes attached to it
-        if (strike->getPlayerPos() == 0) cerr << "TEST FAILURE: BattleBoatBoard failed to deconstruct an attached strike object!" << endl;
+        if (strike->getPlayerPos() == 0) {
+            cerr << "TEST FAILURE: BattleBoatBoard failed to deconstruct an attached strike object!" << endl;
+            failures = true;
+        }
         strike = nullptr;
 
         if (strike2->getPlayerPos() != 0) {
             cerr << "TEST FAILURE: BattleBoatBoard deconstructor destroyed a strike object that should not have been attached!" << endl;
+            failures = true;
         } else {
             delete strike2;
         }
         strike2 = nullptr;
 
-        return firstStrikeValid && !secondStrikeValid;
+        if (!failures) cout << "TEST PASS: testStrikeOverlapValidation()" << endl;
+        return failures;
     }
 
-    static bool testAll() {
-        bool allPass = true;
-        if (!testStrikeOverlapValidation()) allPass = false;
-        return allPass;
+    static unsigned int testAll() {
+        unsigned int failures{0};
+        if (testStrikeOverlapValidation()) failures++;
+        if (failures == 0) cout << endl << "ALL TESTS IN TestGameBoardAddStrike PASSED!" << endl;
+        return failures;
     }
 };
