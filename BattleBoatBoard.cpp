@@ -41,7 +41,7 @@ BattleBoatBoard::~BattleBoatBoard() {
     }
 
     for (int i = 0; i < strikes.size(); i++) {
-        delete strikes[i];
+        delete strikes[i]; // ISSUES! double free or corruption (fasttop)
     }
 }
 
