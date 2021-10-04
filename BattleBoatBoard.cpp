@@ -69,7 +69,8 @@ bool BattleBoatBoard::placeStrike(Strike &s) {
 
 Player& BattleBoatBoard::getWinner() {
     //TODO: Implement
-    return Player(COMPUTER);
+    Player p = Player(COMPUTER);
+    return p;
 }
 
 std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {

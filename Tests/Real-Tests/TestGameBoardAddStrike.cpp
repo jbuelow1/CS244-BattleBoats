@@ -8,6 +8,7 @@
 using namespace std;
 
 class TestGameBoardAddStrike {
+public:
     static bool testStrikeOverlapValidation() {
         BattleBoatBoard *board = new BattleBoatBoard(Options::PLAYER_COUNT, Options::BOARD_SIZE_X, Options::BOARD_SIZE_Y);
         Player *player = new Player(HUMAN_A);
@@ -34,7 +35,7 @@ class TestGameBoardAddStrike {
         return firstStrikeValid && !secondStrikeValid;
     }
 
-    static bool TestAll() {
+    static bool testAll() {
         bool allPass = true;
         if (!testStrikeOverlapValidation()) allPass = false;
         return allPass;
