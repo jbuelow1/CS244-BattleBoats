@@ -23,14 +23,21 @@ public:
         if (secondStrikeValid) cerr << "TEST FAILURE: Placing a strike that was supposed to fail has succeeded!" << endl;
 
         // Clean up
-        delete strike2;
-        strike2 = nullptr;
-        delete strike;
-        strike = nullptr;
         delete player;
         player = nullptr;
         delete board;
         board = nullptr;
+
+        // Verify that the deconstructor for BattleBoatBoard has deleted all the strikes attached to it
+        if (strike->getPlayerPos() == 0) cerr << "TEST FAILURE: BattleBoatBoard failed to deconstruct an attached strike object!" << endl;
+        strike = nullptr;
+
+        if (strike2->getPlayerPos() != 0) {
+            cerr << "TEST FAILURE: BattleBoatBoard deconstructor destroyed a strike object that should not have been attached!" << endl;
+        } else {
+            delete strike2;
+        }
+        strike2 = nullptr;
 
         return firstStrikeValid && !secondStrikeValid;
     }

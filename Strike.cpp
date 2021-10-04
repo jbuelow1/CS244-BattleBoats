@@ -4,6 +4,10 @@ Strike::Strike(Player &owner, int location[3]) : BoardPiece(location) {
 
 }
 
+Strike::~Strike() {
+    // Nothing needs to be wiped from the heap, but an explicit deconstructor needs to be here apparently
+}
+
 bool Strike::computeHit(BattleBoatBoard& board) {
     // Verify that a strike is not already at this location
     if (board.getGrid()[getPlayerPos()][getX()][getY()][1] != nullptr) {

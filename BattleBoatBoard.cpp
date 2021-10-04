@@ -24,24 +24,13 @@ BattleBoatBoard::BattleBoatBoard(int players, int sizeX, int sizeY) {
 }
 
 BattleBoatBoard::~BattleBoatBoard() {
-    // Erase all elements of the board
-    for (int p = 0; p < boardGrid.size(); p++) {
-        for (int x = 0; x < boardGrid[0].size(); x++) {
-            for (int y = 0; y < boardGrid[0][0].size(); y++) {
-                for (int i = 0; i < 2; i++) {
-                    delete boardGrid[p][x][y][i];
-                }
-            }
-        }
-    }
-
     // Delete boat and strike arrays
     for (int i = 0; i < boats.size(); i++) {
         delete boats[i];
     }
 
     for (int i = 0; i < strikes.size(); i++) {
-        delete strikes[i]; // ISSUES! double free or corruption (fasttop)
+        delete strikes[i];
     }
 }
 

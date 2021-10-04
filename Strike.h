@@ -14,6 +14,7 @@ class Boat;
 class Strike : public BoardPiece {
 public:
 	Strike(Player &owner, int location[3]);
+    ~Strike();
 	bool computeHit(BattleBoatBoard& board);
 	bool getIsHit() const;
     bool wouldHit(Boat& b);
