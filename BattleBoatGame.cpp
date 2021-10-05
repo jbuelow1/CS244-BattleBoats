@@ -16,10 +16,30 @@ BattleBoatGame::~BattleBoatGame() {
 }
 
 void BattleBoatGame::playGame() {
-    //TODO: Implement
+    setupGame();
+
+    bool gameRunning{true};
+    int turn{0};
+    while (gameRunning) {
+
+        runRound();
+
+        // Exit conditions: a player has won
+        if (board->hasWinner()) {
+            gameRunning = false;
+        }
+    }
 }
 
-void BattleBoatGame::runTurnForPlayer(Player) {
+void BattleBoatGame::setupGame() {
+    cout << "Welcome to BattleBoats!" << endl;
+    for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
+
+    }
+    turnIndex = 0;
+}
+
+void BattleBoatGame::runTurnForPlayer(Player p) {
     //TODO: Implement
 }
 
