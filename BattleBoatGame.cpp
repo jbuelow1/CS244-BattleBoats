@@ -31,10 +31,18 @@ void BattleBoatGame::playGame() {
     }
 }
 
+void BattleBoatGame::placeBoats(Player& p) {
+    cout << "Placing 2 unit boat. Enter location?" << endl;
+    int* boatLocation = ir.promptAndResolveBoardLocation();
+    Orientation boatOrientation = ir.promptAndResolveOrientation();
+    Boat* b = new Boat(p, boatLocation, 2, boatOrientation);
+    if (!board->placeBoat(*b)) { goto }
+}
+
 void BattleBoatGame::setupGame() {
     cout << "Welcome to BattleBoats!" << endl;
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
-
+        _placeBoats(*turnOrder[turnIndex]);
     }
     turnIndex = 0;
 }
@@ -44,6 +52,8 @@ void BattleBoatGame::runTurnForPlayer(Player p) {
 }
 
 bool BattleBoatGame::runRound() {
-    //TODO: Implement
-    return false;
+    for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
+
+    }
+    turnIndex = 0;
 }

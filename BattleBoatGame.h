@@ -12,9 +12,11 @@ public:
 private:
 	BattleBoatBoard* board;
 	Player* turnOrder[2];
-    InputResolver ir;
+    InputResolver ir{};
 	int turnIndex;
 	void runTurnForPlayer(Player);
 	bool runRound();
     void setupGame();
+
+    void placeBoats(Player &p);
 };
