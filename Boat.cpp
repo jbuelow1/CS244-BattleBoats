@@ -18,5 +18,19 @@ bool Boat::isSunk() const {
 }
 
 bool Boat::validatePlacement(BattleBoatBoard *b) {
-    return false;
+    for (int i = 0; i < boatSize; i++) {
+        int x,y;
+        if (orientation == VERTICAL) {
+            x = getX();
+            y = getY() + i;
+        } else {
+            x = getX() + i;
+            y = getY();
+        }
+
+        if (!(b->getGrid()[getPlayerPos()][x][y][0] == nullptr)) {
+            return false;
+        }
+    }
+    return true;
 }
