@@ -53,6 +53,10 @@ void BattleBoatGame::placeBoats(Player& p) {
             else { cout << "Location Invalid!" << endl; } // otherwise, scream at the user and loop again
         }
     }
+
+    // This amalgamation of escape codes will, *on linux*, and in most terminals, wipe the console.
+    // doing the same on Windows requires libraries and stuff, so I didn't bother with that
+    cout << "\x1B[2J\x1B[H" << endl;
 }
 
 void BattleBoatGame::setupGame() {
