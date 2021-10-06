@@ -3,9 +3,28 @@
 #include "InputResolver.h"
 #include "Options.cpp"
 
-//TODO: Implement
 Orientation InputResolver::promptAndResolveOrientation() {
-    return VERTICAL;
+    while (true) {
+        cout << "Select orientation (Horizontal or Vertical) ? ";
+        string input;
+        getline(cin, input);
+
+        // Scan through the line of input recieved. Once we hit a v or an h, assume vertial or horizontal was input
+        for (int i = 0; i < input.length(); i++) {
+            if (input[i] >= 0x41 && input[i] <= 0x5A)  { // Between A and Z
+                input[i] += 0x20; // Shift over to make it lowercase
+            }
+
+            if (input[i] == 'v') {
+                //cout << "Got: VERTICAL" << endl;
+                return VERTICAL;
+            } else if (input[i] == 'h') {
+                //cout << "Got: HORIZONTAL" << endl;
+                return HORIZONTAL;
+            }
+        }
+        cout << "Invalid Input!" << endl;
+    }
 }
 
 int *InputResolver::promptAndResolveBoardLocation() {

@@ -2,10 +2,13 @@
 // Created by BuelowJacob on 10/1/2021.
 //
 
-#import "../Real-Tests/TestGameBoardAddStrike.cpp"
+#include "../../InputResolver.h"
 
 
 int main() {
+    InputResolver ir{};
 
-
+    while (true) {
+        ir.promptAndResolveOrientation();
+    }
 }
