@@ -36,7 +36,18 @@ BattleBoatBoard::~BattleBoatBoard() {
 
 bool BattleBoatBoard::placeBoat(Boat &s) {
     if (s.validatePlacement(this)) {
-        boardGrid[s.getPlayerPos()][s.getX()][s.getY()][0] = &s;
+        for (int i = 0; i < s.getSize(); i++) {
+            int x,y;
+            if (s.getOrientation() == VERTICAL) {
+                x = s.getX();
+                y = s.getY() + i;
+            } else {
+                x = s.getX() + i;
+                y = s.getY();
+            }
+
+            boardGrid[s.getPlayerPos()][x][y][0] = &s;
+        }
         return true;
     } else {
         return false;

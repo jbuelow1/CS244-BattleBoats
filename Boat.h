@@ -18,6 +18,8 @@ public:
     virtual bool validatePlacement(BattleBoatBoard *b);
 	void addStrike(Strike& strike);
 	bool isSunk() const;
+    int getSize() const;
+    int getOrientation() const;
 private:
 	int boatSize;
 	Orientation orientation;

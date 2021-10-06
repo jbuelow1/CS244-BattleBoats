@@ -31,15 +31,27 @@ void BattleBoatGame::playGame() {
     }
 }
 
+/**
+ * Setup helper function; prompts and places all boats for a given player
+ * @param p player to place boats for
+ */
 void BattleBoatGame::placeBoats(Player& p) {
-    bool placing{true};
-    while (placing) {
-        cout << p << ": Placing 2 unit boat. ";
-        int* boatLocation = ir.promptAndResolveBoardLocation();
-        Orientation boatOrientation = ir.promptAndResolveOrientation();
-        Boat* b = new Boat(p, boatLocation, 2, boatOrientation);
-        if (board->placeBoat(*b)) { placing = false; }
-        else { cout << "Location Invalid!" << endl; }
+    for (int size : Options::BOAT_SIZES) { // For each of the boat sized defined in Options.cpp
+        bool placing{true};
+        while (placing) { // Loop until boat placed successfully
+            cout << p << ": Placing " << size << " unit boat. ";
+
+            int* boatLocation = ir.promptAndResolveBoardLocation(); // prompts for a location to be entered
+            boatLocation[0] = turnIndex; // move the board index to the current player's index (above function doesnt know this and will always output -1)
+            Orientation boatOrientation = ir.promptAndResolveOrientation(); // prompts for the orientation of the boat
+            Boat* b = new Boat(p, boatLocation, size, boatOrientation); // creat the boat object
+
+            delete boatLocation; // Boat will copy location data, clean up in this scope
+            boatLocation = nullptr;
+
+            if (board->placeBoat(*b)) { placing = false; } // break loop if boat was placed
+            else { cout << "Location Invalid!" << endl; } // otherwise, scream at the user and loop again
+        }
     }
 }
 

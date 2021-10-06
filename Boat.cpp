@@ -1,7 +1,8 @@
 #include "Boat.h"
 
 Boat::Boat(Player &owner, int location[3], int size, Orientation orientation) : BoardPiece(location) {
-    //TODO: Implement
+    this->boatSize = size;
+    this->orientation = orientation;
 }
 
 Boat::~Boat() {
@@ -33,4 +34,12 @@ bool Boat::validatePlacement(BattleBoatBoard *b) {
         }
     }
     return true;
+}
+
+int Boat::getSize() const {
+    return boatSize;
+}
+
+int Boat::getOrientation() const {
+    return orientation;
 }
