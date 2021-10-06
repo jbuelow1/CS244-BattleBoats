@@ -34,7 +34,7 @@ void BattleBoatGame::playGame() {
 void BattleBoatGame::placeBoats(Player& p) {
     bool placing{true};
     while (placing) {
-        cout << "Placing 2 unit boat. Enter location?" << endl;
+        cout << p << ": Placing 2 unit boat. ";
         int* boatLocation = ir.promptAndResolveBoardLocation();
         Orientation boatOrientation = ir.promptAndResolveOrientation();
         Boat* b = new Boat(p, boatLocation, 2, boatOrientation);
