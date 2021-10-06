@@ -41,6 +41,7 @@ void BattleBoatGame::placeBoats(Player& p) {
         int size = boatSizes[i];
         bool placing{true};
         while (placing) { // Loop until boat placed successfully
+            cout << *board << endl << endl; //TODO: swap for printing with a player in context so opponent is hidden
             cout << p << ": Placing " << size << " unit boat. ";
 
             int* boatLocation = ir.promptAndResolveBoardLocation(); // prompts for a location to be entered
@@ -53,10 +54,10 @@ void BattleBoatGame::placeBoats(Player& p) {
 
             if (board->placeBoat(*b)) { placing = false; } // break loop if boat was placed
             else { cout << "Location Invalid!" << endl; } // otherwise, scream at the user and loop again
+
+            clearTerm();
         }
     }
-
-    clearTerm();
 }
 
 void BattleBoatGame::setupGame() {

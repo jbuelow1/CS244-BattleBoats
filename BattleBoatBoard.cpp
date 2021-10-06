@@ -1,4 +1,7 @@
+#include <iomanip>
+
 #include "BattleBoatBoard.h"
+#include "Options.cpp"
 
 using namespace std;
 
@@ -74,8 +77,70 @@ Player& BattleBoatBoard::getWinner() {
 }
 
 std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
-    //TODO: Implement
-    cout << "Printing game board not yet implemented" << endl;
+    for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) {
+        for (int p = 0; p < Options::PLAYER_COUNT; p++) {
+            if (by == 0) {
+                cout << "╔";
+            } else if (by >= ((Options::BOARD_SIZE_Y + 1) * 4)) {
+                cout << "╚";
+            } else if (by % 4 == 0) {
+                cout << "╠";
+            } else {
+                cout << "║";
+            }
+
+            for (int bx = 0; bx < ((Options::BOARD_SIZE_X + 1) * 4) - 1; bx++) {
+                if (by % 4 == 0) {
+                    if ((bx + 1) % 4 == 0) {
+                        if (by == 0) {
+                            cout << "╦";
+                        } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
+                            cout << "╩";
+                        } else {
+                            cout << "╬";
+                        }
+                    } else {
+                        cout << "═";
+                    }
+                } else {
+                    if ((bx + 1) % 4 == 0) {
+                        cout << "║";
+                    } else if ((bx + 3) % 4 == 0) {
+                        // vertical/center data in each cell
+                        if (by == 2) {
+                            // Top cell
+                            char letterLabel = ((bx + 1) / 4) + 0x40;
+                            cout << letterLabel;
+                        } else if (bx < 5 && (by + 2) % 4 == 0) {
+                            // Left cell
+                            cout << ((by + 1) / 4);
+                        } else {
+                            cout << " ";
+                        }
+                    } else if ((by + 2) % 4 == 0) {
+                        if ((by + 1) / 4 == 10 && bx == 2) { // Prevents printing a space on the right of "10" on the label col
+                        } else {
+                            cout << " "; // horizontal data in each cell
+                        }
+                    } else {
+                        cout << " "; // Corner of each cell
+                    }
+                }
+            }
+
+            if (by == 0) {
+                cout << "╗";
+            } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
+                cout << "╝";
+            } else if (by % 4 == 0) {
+                cout << "╣";
+            } else {
+                cout << "║";
+            }
+            cout << "        ";
+        }
+        cout << endl;
+    }
     return out;
 }
 
