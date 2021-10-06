@@ -36,7 +36,9 @@ void BattleBoatGame::playGame() {
  * @param p player to place boats for
  */
 void BattleBoatGame::placeBoats(Player& p) {
-    for (int size : Options::BOAT_SIZES) { // For each of the boat sized defined in Options.cpp
+    int boatSizes[] = OPTION_DEF_BOAT_SIZES;
+    for (int i = 0; i < Options::BOAT_COUNT; i++) { // For each of the boat sized defined in Options.cpp
+        int size = boatSizes[i];
         bool placing{true};
         while (placing) { // Loop until boat placed successfully
             cout << p << ": Placing " << size << " unit boat. ";
@@ -54,12 +56,11 @@ void BattleBoatGame::placeBoats(Player& p) {
         }
     }
 
-    // This amalgamation of escape codes will, *on linux*, and in most terminals, wipe the console.
-    // doing the same on Windows requires libraries and stuff, so I didn't bother with that
-    cout << "\x1B[2J\x1B[H" << endl;
+    clearTerm();
 }
 
 void BattleBoatGame::setupGame() {
+    clearTerm();
     cout << "Welcome to BattleBoats!" << endl;
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
         placeBoats(*turnOrder[turnIndex]);
@@ -77,4 +78,21 @@ bool BattleBoatGame::runRound() {
     }
     turnIndex = 0;
     return false;
+}
+
+/**
+ * Fancy feature: clear the console window
+ * On linux, this is accomplished by printing some escape chars
+ * On windows, however, its *slightly* less elegant
+ */
+void BattleBoatGame::clearTerm() {
+    #ifdef _WIN32 // Macro will be defined when compiled for windows
+    for (int i = 0; i < 50; i++) {
+        cout << endl;
+    }
+    #else
+    // This amalgamation of escape codes will, *on linux*, and in most terminals, wipe the console.
+    // doing the same on Windows requires libraries and stuff
+    cout << "\x1B[2J\x1B[H";
+    #endif
 }

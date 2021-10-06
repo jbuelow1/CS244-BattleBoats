@@ -19,4 +19,6 @@ private:
     void setupGame();
 
     void placeBoats(Player &p);
+
+    static void clearTerm();
 };

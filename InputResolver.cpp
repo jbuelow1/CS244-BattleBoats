@@ -33,7 +33,7 @@ int *InputResolver::promptAndResolveBoardLocation() {
     bool done{false};
     while (!done) {
         string input;
-        cout << "Enter Location (Ex.'C5') ?";
+        cout << "Enter Location (Ex.'C5') ? ";
         getline(cin, input);
 
         for (int i = 0; i < input.length(); i++) {
