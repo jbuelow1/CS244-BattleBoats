@@ -22,6 +22,9 @@ public:
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
     vector<vector<vector<vector<BoardPiece*>>>> getGrid() const;
 	friend ostream& operator << (ostream& out, BattleBoatBoard board);
+
+    bool hasWinner();
+
 private:
     vector<Boat*> boats;
     vector<Strike*> strikes;

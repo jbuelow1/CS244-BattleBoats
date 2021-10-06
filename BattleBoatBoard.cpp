@@ -71,3 +71,7 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
 vector<vector<vector<vector<BoardPiece *>>>> BattleBoatBoard::getGrid() const {
     return boardGrid;
 }
+
+bool BattleBoatBoard::hasWinner() {
+    return true; //TODO
+}
