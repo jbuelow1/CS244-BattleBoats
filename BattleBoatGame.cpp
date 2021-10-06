@@ -39,7 +39,7 @@ void BattleBoatGame::placeBoats(Player& p) {
         Orientation boatOrientation = ir.promptAndResolveOrientation();
         Boat* b = new Boat(p, boatLocation, 2, boatOrientation);
         if (board->placeBoat(*b)) { placing = false; }
-        else { cerr << "Location Invalid!" << endl; }
+        else { cout << "Location Invalid!" << endl; }
     }
 }
 
