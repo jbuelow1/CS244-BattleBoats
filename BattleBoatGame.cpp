@@ -75,7 +75,13 @@ void BattleBoatGame::runTurnForPlayer(Player p) {
 
 bool BattleBoatGame::runRound() {
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
+        cout << "Your turn, Player ";
+        if (turnIndex == 0) { cout << "A"; } else { cout << "B"; }
+        cout << endl;
 
+        //TODO
+
+        clearTerm();
     }
     turnIndex = 0;
     return false;

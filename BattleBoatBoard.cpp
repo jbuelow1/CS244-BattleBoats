@@ -117,8 +117,12 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
                         } else {
                             if ((by + 2) % 4 == 0 && ((bx + 1) / 4) > 0 && ((by + 1) / 4) > 0 &&
                             ((bx + 1) / 4) < Options::BOARD_SIZE_X && ((by + 1) / 4) < Options::BOARD_SIZE_Y) {
-                                if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0]) {
-                                    cout << "█";
+                                if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0] && board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
+                                    cout << "¤"; // A hit
+                                } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0]) {
+                                    cout << "█"; // A boat
+                                } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
+                                    cout << "Ø"; // A miss
                                 } else {
                                     cout << " ";
                                 }
