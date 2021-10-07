@@ -115,7 +115,16 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
                             // Left cell
                             cout << ((by + 1) / 4);
                         } else {
-                            cout << " ";
+                            if ((by + 2) % 4 == 0 && ((bx + 1) / 4) > 0 && ((by + 1) / 4) > 0 &&
+                            ((bx + 1) / 4) < Options::BOARD_SIZE_X && ((by + 1) / 4) < Options::BOARD_SIZE_Y) {
+                                if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0]) {
+                                    cout << "█";
+                                } else {
+                                    cout << " ";
+                                }
+                            } else {
+                                cout << " "; // Vertical and center data in each cell
+                            }
                         }
                     } else if ((by + 2) % 4 == 0) {
                         if ((by + 1) / 4 == 10 && bx == 2) { // Prevents printing a space on the right of "10" on the label col
