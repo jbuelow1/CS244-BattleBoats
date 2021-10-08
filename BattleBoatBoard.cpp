@@ -82,7 +82,7 @@ Player& BattleBoatBoard::getWinner() {
 // TODO: Fix bug where anything in column J doesnt display
 // TODO: Fix bug where placing a strike in column J crashes
 // TODO: Fix bug where anything in row 10 doesnt display
-std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
+std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
     for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) {
         for (int p = 0; p < Options::PLAYER_COUNT; p++) {
             if (by == 0) {

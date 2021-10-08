@@ -95,6 +95,7 @@ void BattleBoatGame::runRound() {
                     loc = ir.promptAndResolveBoardLocation(); // Get the location on board
                     loc[0] = !turnIndex; // move the board index to the opposing player's index (above function doesnt know this and will always output -1)
                     Strike* strike = new Strike(*turnOrder[turnIndex], loc);
+                    delete loc;
                     placed = board->placeStrike(*strike);
                     if (!placed) {
                         cout << "Could not place a strike at that location! Try again!" << endl;

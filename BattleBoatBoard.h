@@ -21,7 +21,7 @@ public:
 	Player& getWinner();
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
     vector<vector<vector<vector<BoardPiece*>>>> getGrid() const;
-	friend ostream& operator << (ostream& out, BattleBoatBoard board);
+	friend ostream& operator << (ostream& out, BattleBoatBoard& board);
 
     bool hasWinner();
 
