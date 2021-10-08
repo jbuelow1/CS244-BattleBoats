@@ -81,39 +81,37 @@ Player* BattleBoatBoard::getWinner(Player* players[]) {
 }
 
 // TODO: Document this abomination
-// TODO: These box drawing chars dont work on windows. find an alternative!
 // TODO: Fix bug where anything in column J doesnt display
-// TODO: Fix bug where placing a strike in column J crashes
 // TODO: Fix bug where anything in row 10 doesnt display
 std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
     for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) {
         for (int p = 0; p < Options::PLAYER_COUNT; p++) {
             if (by == 0) {
-                cout << "╔";
+                cout << BOXDRAW_CORNER_UPLEFT;
             } else if (by >= ((Options::BOARD_SIZE_Y + 1) * 4)) {
-                cout << "╚";
+                cout << BOXDRAW_CORNER_LOWLEFT;
             } else if (by % 4 == 0) {
-                cout << "╠";
+                cout << BOXDRAW_VERTICAL_T_RIGHT;
             } else {
-                cout << "║";
+                cout << BOXDRAW_VERTICAL;
             }
 
             for (int bx = 0; bx < ((Options::BOARD_SIZE_X + 1) * 4) - 1; bx++) {
                 if (by % 4 == 0) {
                     if ((bx + 1) % 4 == 0) {
                         if (by == 0) {
-                            cout << "╦";
+                            cout << BOXDRAW_HORIZONTAL_T_DOWN;
                         } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
-                            cout << "╩";
+                            cout << BOXDRAW_HORIZONTAL_T_UP;
                         } else {
-                            cout << "╬";
+                            cout << BOXDRAW_CROSS;
                         }
                     } else {
-                        cout << "═";
+                        cout << BOXDRAW_HORIZONTAL;
                     }
                 } else {
                     if ((bx + 1) % 4 == 0) {
-                        cout << "║";
+                        cout << BOXDRAW_VERTICAL;
                     } else if ((bx + 3) % 4 == 0) {
                         // vertical/center data in each cell
                         if (by == 2) {
@@ -151,13 +149,13 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
             }
 
             if (by == 0) {
-                cout << "╗";
+                cout << BOXDRAW_CORNER_UPRIGHT;
             } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
-                cout << "╝";
+                cout << BOXDRAW_CORNER_LOWRIGHT;
             } else if (by % 4 == 0) {
-                cout << "╣";
+                cout << BOXDRAW_VERTICAL_T_LEFT;
             } else {
-                cout << "║";
+                cout << BOXDRAW_VERTICAL;
             }
             cout << "        ";
         }
