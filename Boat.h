@@ -1,7 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #include "BoardPiece.h"
 #include "Player.h"
+
+using namespace std;
 
 enum Orientation {
 	VERTICAL,
@@ -23,6 +27,5 @@ public:
 private:
 	int boatSize;
 	Orientation orientation;
-	Strike* strikes;
-	int strikeCount;
+    vector<Strike *> strikes;
 };

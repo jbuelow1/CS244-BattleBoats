@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 #include "Boat.h"
 #include "Strike.h"
@@ -19,11 +20,13 @@ class Player {
 public:
 	Player(PlayerType type);
 	~Player();
+    void addBoat(Boat& b);
 	void playTurn();
     PlayerType getType() const;
     friend ostream& operator << (ostream& out, Player& p);
+    bool hasLost() const;
 private:
     PlayerType type;
-	Boat* boats;
-	Strike* strikes;
+	vector<Boat *> boats;
+	vector<Strike *> strikes;
 };

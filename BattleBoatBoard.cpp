@@ -71,10 +71,13 @@ bool BattleBoatBoard::placeStrike(Strike &s) {
     }
 }
 
-Player& BattleBoatBoard::getWinner() {
-    //TODO: Implement
-    Player p = Player(COMPUTER);
-    return p;
+Player* BattleBoatBoard::getWinner(Player* players[]) {
+    for (int p = 0; p < Options::PLAYER_COUNT; p++) {
+        if (players[p]->hasLost()) {
+            return players[!p];
+        }
+    }
+    return nullptr;
 }
 
 // TODO: Document this abomination
@@ -165,8 +168,4 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
 
 vector<vector<vector<vector<BoardPiece *>>>> BattleBoatBoard::getGrid() const {
     return boardGrid;
-}
-
-bool BattleBoatBoard::hasWinner() {
-    return false; //TODO
 }

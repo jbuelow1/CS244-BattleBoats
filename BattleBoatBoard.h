@@ -18,7 +18,7 @@ public:
 	~BattleBoatBoard();
 	bool placeBoat(Boat& b);
 	bool placeStrike(Strike& s);
-	Player& getWinner();
+	Player* getWinner(Player* players[]);
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
     vector<vector<vector<vector<BoardPiece*>>>> getGrid() const;
 	friend ostream& operator << (ostream& out, BattleBoatBoard& board);

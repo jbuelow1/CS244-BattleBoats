@@ -82,5 +82,7 @@ TurnAction InputResolver::promptAndResolveTurnAction() {
     cout << "What would you like to do (0: skip, 1: strike, 2: special, 3: forfeit) ? ";
     int sel;
     cin >> sel;
+    string trash;
+    getline(cin, trash); // Get rid of trailing newline
     return static_cast<TurnAction>(sel);
 }

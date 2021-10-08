@@ -10,12 +10,13 @@ Boat::~Boat() {
 }
 
 void Boat::addStrike(Strike &strike) {
-    //TODO: Implement
+    strikes.push_back(&strike);
 }
 
 bool Boat::isSunk() const {
-    //TODO: Implement
-    return false;
+    return strikes.size() >= boatSize;
+    // TODO: Now would be a good time to verify that all the attached strikes would actually hit this boat
+    //  This should already be guarded against in other functions tho
 }
 
 bool Boat::validatePlacement(BattleBoatBoard *b) {

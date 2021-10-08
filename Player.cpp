@@ -28,3 +28,16 @@ ostream &operator<<(ostream &out, Player &p) {
 PlayerType Player::getType() const {
     return type;
 }
+
+void Player::addBoat(Boat &b) {
+    boats.push_back(&b);
+}
+
+bool Player::hasLost() const {
+    for (int i = 0; i < boats.size(); i++) {
+        if (!boats[i]->isSunk()) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -25,8 +25,11 @@ void BattleBoatGame::playGame() {
         runRound();
 
         // Exit conditions: a player has won
-        if (board->hasWinner()) {
+        Player* winner = board->getWinner(turnOrder);
+        if (winner != nullptr) {
             gameRunning = false;
+            cout << *board << endl;
+            cout << *winner << " has won the game!" << endl;
         }
     }
 }
@@ -52,8 +55,10 @@ void BattleBoatGame::placeBoats(Player& p) {
             delete boatLocation; // Boat will copy location data, clean up in this scope
             boatLocation = nullptr;
 
-            if (board->placeBoat(*b)) { placing = false; } // break loop if boat was placed
-            else { cout << "Location Invalid!" << endl; } // otherwise, scream at the user and loop again
+            if (board->placeBoat(*b)) { // break loop if boat was placed
+                placing = false;
+                p.addBoat(*b); // Pass a pointer to the player that owns the boat
+            } else { cout << "Location Invalid!" << endl; } // otherwise, scream at the user and loop again
 
             clearTerm();
         }
