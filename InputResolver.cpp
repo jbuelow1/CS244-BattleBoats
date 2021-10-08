@@ -49,9 +49,15 @@ int *InputResolver::promptAndResolveBoardLocation() {
             }
         }
 
-        for (int i = 0; i < input.length(); i++) { //TODO: need to make this work with at least 2 digit numbers!
+        for (int i = 0; i < input.length(); i++) {
             if (input[i] >= 0x30 && input[i] <= 0x39) { // Between 0 and 9
-                number = input[i] - 0x30;
+                if (input[i + 1] >= 0x30 && input[i + 1] <= 0x39) { // The next char is also between 0 and 9, combine them
+                    number = ((input[i] - 0x30) * 10) + input[i + 1] - 0x30;
+                    break;
+                } else {
+                    number = input[i] - 0x30;
+                    break;
+                }
             }
         }
 
