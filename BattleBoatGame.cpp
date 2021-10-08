@@ -93,13 +93,13 @@ bool BattleBoatGame::runRound() {
  * On windows, however, its *slightly* less elegant
  */
 void BattleBoatGame::clearTerm() {
-    #ifdef _WIN32 // Macro will be defined when compiled for windows
-    for (int i = 0; i < 50; i++) {
-        cout << endl;
-    }
-    #else
+    #ifdef __linux // Macro will be defined when compiled for linux
     // This amalgamation of escape codes will, *on linux*, and in most terminals, wipe the console.
     // doing the same on Windows requires libraries and stuff
     cout << "\x1B[2J\x1B[H";
+    #else
+    for (int i = 0; i < 50; i++) {
+        cout << endl;
+    }
     #endif
 }
