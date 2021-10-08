@@ -6,17 +6,16 @@ Boat::Boat(Player &owner, int location[3], int size, Orientation orientation) : 
 }
 
 Boat::~Boat() {
-    //TODO: Implement
+    // While this class maintains a list of pointers to strikes, the BattleBoatBoard class also maintains a list, and is
+    //  deemed responsible for deleting these when that destructor is called
 }
 
 void Boat::addStrike(Strike &strike) {
     strikes.push_back(&strike);
 }
 
-bool Boat::isSunk() const {
+bool Boat::isSunk() {
     return strikes.size() >= boatSize;
-    // TODO: Now would be a good time to verify that all the attached strikes would actually hit this boat
-    //  This should already be guarded against in other functions tho
 }
 
 bool Boat::validatePlacement(BattleBoatBoard *b) {

@@ -35,6 +35,5 @@ bool Strike::computeHit(BattleBoatBoard& board) {
 }
 
 bool Strike::getIsHit() const {
-    //TODO: Implement
-    return false;
+    return isHit;
 }

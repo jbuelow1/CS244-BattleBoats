@@ -5,11 +5,8 @@ Player::Player(PlayerType type) {
 }
 
 Player::~Player() {
-    //TODO: Implement
-}
-
-void Player::playTurn() {
-    //TODO: Implement
+    // While this class maintains a list of boat and strike pointers, BattleBoatBoard also does so, and is deemed
+    //  responsible for deleting that memory space
 }
 
 ostream &operator<<(ostream &out, Player &p) {

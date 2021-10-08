@@ -1,7 +1,6 @@
 #pragma once
 
-//TODO: this is commented out to prevent an error with BoardPiece, Strike and Boat that I do not want to deal with right now
-//#include "Player.h"
+
 
 class BattleBoatBoard;
 
@@ -12,7 +11,7 @@ public:
     int getX() const;
     int getY() const;
 private:
-	//Player& owner;
+	//Player& owner; // was causing too many problems with cyclic includes, so was disabled pretty early on
 	int location[3];
 };
 

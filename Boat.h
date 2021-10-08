@@ -21,7 +21,7 @@ public:
 	~Boat();
     virtual bool validatePlacement(BattleBoatBoard *b);
 	void addStrike(Strike& strike);
-	bool isSunk() const;
+	bool isSunk();
     int getSize() const;
     int getOrientation() const;
 private:

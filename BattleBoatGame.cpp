@@ -74,17 +74,11 @@ void BattleBoatGame::setupGame() {
     turnIndex = 0;
 }
 
-void BattleBoatGame::runTurnForPlayer(Player p) {
-    //TODO: Implement
-}
-
 void BattleBoatGame::runRound() {
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
         cout << *board << endl << endl;
 
-        cout << "Your turn, Player ";
-        if (turnIndex == 0) { cout << "A"; } else { cout << "B"; }
-        cout << endl;
+        cout << "Your turn, " << turnOrder[turnIndex] << endl;
 
         int* loc{nullptr};
         bool placed{false};
@@ -115,10 +109,6 @@ void BattleBoatGame::runRound() {
                     placed = true;
                     cerr << "NOT IMPLEMENTED LMAO" << endl; //TODO
                 }
-                break;
-            case FORFEIT:
-                // Forfeit
-                cerr << "NOT IMPLEMENTED LMAO" << endl; //TODO
                 break;
             default:
                 // Should never be reached assuming InputResolver is sanitizing inputs properly
