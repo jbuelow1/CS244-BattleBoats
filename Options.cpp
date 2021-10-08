@@ -37,6 +37,10 @@ struct Options {
 #define BOXDRAW_HORIZONTAL_T_DOWN "╦"
 #define BOXDRAW_CROSS "╬"
 
+#define BOXDRAW_BOAT "█"
+#define BOXDRAW_HIT "¤"
+#define BOXDRAW_MISS "Ø"
+
 #else /* BATTLEBOATS_USE_FANCY_CHARS */
 
 #define BOXDRAW_VERTICAL "|"
@@ -50,5 +54,9 @@ struct Options {
 #define BOXDRAW_HORIZONTAL_T_UP "+"
 #define BOXDRAW_HORIZONTAL_T_DOWN "+"
 #define BOXDRAW_CROSS "+"
+
+#define BOXDRAW_BOAT "#"
+#define BOXDRAW_HIT "*"
+#define BOXDRAW_MISS "o"
 
 #endif /* BATTLEBOATS_USE_FANCY_CHARS */
