@@ -35,7 +35,7 @@ int *InputResolver::promptAndResolveBoardLocation() {
     bool done{false};
     while (!done) {
         string input;
-        cout << "Enter Location (Ex.'C5') ? ";
+        cout << "Enter Location ? ";
         getline(cin, input);
 
         for (int i = 0; i < input.length(); i++) {
@@ -83,12 +83,17 @@ bool InputResolver::promptAndResolvePlayAgain() {
     return false;
 }
 
-// TODO: This needs to be more input-safe!
 TurnAction InputResolver::promptAndResolveTurnAction() {
-    cout << "What would you like to do (0: skip, 1: strike, 2: special, 3: forfeit) ? ";
-    int sel;
-    cin >> sel;
-    string trash;
-    getline(cin, trash); // Get rid of trailing newline
-    return static_cast<TurnAction>(sel);
+    while (true) {
+        cout << "What would you like to do (0: skip, 1: strike, 2: special) ? ";
+        int sel;
+        cin >> sel;
+        string trash;
+        getline(cin, trash); // Get rid of trailing newline
+        if (sel >= 0 && sel <= 2) {
+            return static_cast<TurnAction>(sel);
+        } else {
+            cout << "Invalid input!" << endl;
+        }
+    }
 }

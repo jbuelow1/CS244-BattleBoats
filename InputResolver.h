@@ -5,8 +5,7 @@
 enum TurnAction {
     SKIP = 0,
     STRIKE = 1,
-    SPECIAL = 2,
-    FORFEIT = 3
+    SPECIAL = 2
 };
 
 class InputResolver {
