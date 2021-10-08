@@ -91,7 +91,6 @@ void BattleBoatGame::runRound() {
                 continue;
                 break;
             case STRIKE:
-                // Strike
                 while(!placed) {
                     loc = ir.promptAndResolveBoardLocation(); // Get the location on board
                     loc[0] = !turnIndex; // move the board index to the opposing player's index (above function doesnt know this and will always output -1)
