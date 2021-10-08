@@ -73,18 +73,56 @@ void BattleBoatGame::runTurnForPlayer(Player p) {
     //TODO: Implement
 }
 
-bool BattleBoatGame::runRound() {
+void BattleBoatGame::runRound() {
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
+        cout << *board << endl << endl;
+
         cout << "Your turn, Player ";
         if (turnIndex == 0) { cout << "A"; } else { cout << "B"; }
         cout << endl;
 
-        //TODO
+        int* loc{nullptr};
+        bool placed{false};
+
+        TurnAction ta = ir.promptAndResolveTurnAction(); // Prompt player for a turn action
+        switch (ta) {
+            case SKIP:
+                cout << "OK. Turn skipped." << endl;
+                continue;
+                break;
+            case STRIKE:
+                // Strike
+                while(!placed) {
+                    loc = ir.promptAndResolveBoardLocation(); // Get the location on board
+                    loc[0] = !turnIndex; // move the board index to the opposing player's index (above function doesnt know this and will always output -1)
+                    Strike* strike = new Strike(*turnOrder[turnIndex], loc);
+                    placed = board->placeStrike(*strike);
+                    if (!placed) {
+                        cout << "Could not place a strike at that location! Try again!" << endl;
+                    }
+                }
+
+                break;
+            case SPECIAL:
+                // Special
+                while (!placed) {
+                    loc = ir.promptAndResolveBoardLocation(); // Get the location on board
+                    placed = true;
+                    cerr << "NOT IMPLEMENTED LMAO" << endl; //TODO
+                }
+                break;
+            case FORFEIT:
+                // Forfeit
+                cerr << "NOT IMPLEMENTED LMAO" << endl; //TODO
+                break;
+            default:
+                // Should never be reached assuming InputResolver is sanitizing inputs properly
+                cerr << "error in turnaction switch overload!" << endl;
+        }
 
         clearTerm();
     }
     turnIndex = 0;
-    return false;
 }
 
 /**

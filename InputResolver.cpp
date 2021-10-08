@@ -3,6 +3,8 @@
 #include "InputResolver.h"
 #include "Options.cpp"
 
+// TODO: Stretch goal: rewrite to use regex for parsing input
+
 Orientation InputResolver::promptAndResolveOrientation() {
     while (true) {
         cout << "Select orientation (Horizontal or Vertical) ? ";
@@ -73,4 +75,12 @@ int *InputResolver::promptAndResolveBoardLocation() {
 
 bool InputResolver::promptAndResolvePlayAgain() {
     return false;
+}
+
+// TODO: This needs to be more input-safe!
+TurnAction InputResolver::promptAndResolveTurnAction() {
+    cout << "What would you like to do (0: skip, 1: strike, 2: special, 3: forfeit) ? ";
+    int sel;
+    cin >> sel;
+    return static_cast<TurnAction>(sel);
 }

@@ -51,6 +51,7 @@ bool BattleBoatBoard::placeBoat(Boat &s) {
 
             boardGrid[s.getPlayerPos()][x][y][0] = &s;
         }
+        boats.push_back(&s);
         return true;
     } else {
         return false;
@@ -77,7 +78,7 @@ Player& BattleBoatBoard::getWinner() {
 }
 
 // TODO: Document this abomination
-// TODO: These box drawing chars dont work on windows. fina an alternative!
+// TODO: These box drawing chars dont work on windows. find an alternative!
 std::ostream& operator<<(std::ostream &out, BattleBoatBoard board) {
     for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) {
         for (int p = 0; p < Options::PLAYER_COUNT; p++) {
@@ -164,5 +165,5 @@ vector<vector<vector<vector<BoardPiece *>>>> BattleBoatBoard::getGrid() const {
 }
 
 bool BattleBoatBoard::hasWinner() {
-    return true; //TODO
+    return false; //TODO
 }

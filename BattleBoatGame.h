@@ -15,7 +15,7 @@ private:
     InputResolver ir{};
 	int turnIndex;
 	void runTurnForPlayer(Player);
-	bool runRound();
+	void runRound();
     void setupGame();
 
     void placeBoats(Player &p);
