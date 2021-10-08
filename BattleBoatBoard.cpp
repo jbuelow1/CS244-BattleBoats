@@ -79,13 +79,19 @@ Player* BattleBoatBoard::getWinner(Player* players[]) {
     }
     return nullptr;
 }
-
-// TODO: Document this abomination
-// TODO: Fix bug where anything in column J doesnt display
-// TODO: Fix bug where anything in row 10 doesnt display
+/**
+ * Prints a table representation of the current gameboard.
+ * Will use BOXDRAW_... preprocessor directives defined in Options.cpp
+ * @param out output stream in
+ * @param board reference to the game board
+ * @return output stream out
+ */
 std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
-    for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) {
-        for (int p = 0; p < Options::PLAYER_COUNT; p++) {
+    for (int by = 0; by < ((Options::BOARD_SIZE_Y + 1) * 4) + 1; by++) { // Print line-by-line
+        for (int p = 0; p < Options::PLAYER_COUNT; p++) { // Print the board for each character side-by-side
+            // This if statement draws characters on the far left of the table
+            // These will never be data, only ever the top left corner, bottom left corner,
+            // a vertical t, or just a vertical line
             if (by == 0) {
                 cout << BOXDRAW_CORNER_UPLEFT;
             } else if (by >= ((Options::BOARD_SIZE_Y + 1) * 4)) {
@@ -96,51 +102,63 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
                 cout << BOXDRAW_VERTICAL;
             }
 
+            // This loop draws everything between the far left and far right
             for (int bx = 0; bx < ((Options::BOARD_SIZE_X + 1) * 4) - 1; bx++) {
                 if (by % 4 == 0) {
+                    // This column is the horizontal border between 2 cells
                     if ((bx + 1) % 4 == 0) {
+                        // This is *also* the vertical border between 2 or 4 cells
                         if (by == 0) {
+                            // At the top of the table
                             cout << BOXDRAW_HORIZONTAL_T_DOWN;
                         } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
+                            // At the bottom of the table
                             cout << BOXDRAW_HORIZONTAL_T_UP;
                         } else {
+                            // Four way intersection between 4 cells
                             cout << BOXDRAW_CROSS;
                         }
                     } else {
+                        // Just a horizontal border
                         cout << BOXDRAW_HORIZONTAL;
                     }
                 } else {
                     if ((bx + 1) % 4 == 0) {
+                        // This column is a vertical border, but isnt also a horizontal border. that was caught above
                         cout << BOXDRAW_VERTICAL;
                     } else if ((bx + 3) % 4 == 0) {
-                        // vertical/center data in each cell
+                        // spaces horizontally centered in the cell (middle characters)
                         if (by == 2) {
-                            // Top cell
+                            // Label cells
+                            // Top cell (Letter labels A-J)
                             char letterLabel = ((bx + 1) / 4) + 0x40;
                             cout << letterLabel;
                         } else if (bx < 5 && (by + 2) % 4 == 0) {
-                            // Left cell
+                            // Label cells
+                            // Left cells (Number labels 1 - 10)
                             cout << ((by + 1) / 4);
                         } else {
                             if ((by + 2) % 4 == 0 && ((bx + 1) / 4) > 0 && ((by + 1) / 4) > 0 &&
-                            ((bx + 1) / 4) < Options::BOARD_SIZE_X && ((by + 1) / 4) < Options::BOARD_SIZE_Y) {
+                            ((bx + 1) / 4) < Options::BOARD_SIZE_X + 1 && ((by + 1) / 4) < Options::BOARD_SIZE_Y + 1) {
+                                // Center of each cell that could potentially contain data
                                 if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0] && board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
-                                    cout << "¤"; // A hit
+                                    cout << "¤"; // A hit (boat and strike both present)
                                 } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0]) {
                                     cout << "█"; // A boat
                                 } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
                                     cout << "Ø"; // A miss
                                 } else {
-                                    cout << " ";
+                                    cout << " "; // Nothing
                                 }
                             } else {
-                                cout << " "; // Vertical and center data in each cell
+                                cout << " "; // Vertical spaces on top of, and on the bottom of the center of each cell
                             }
                         }
                     } else if ((by + 2) % 4 == 0) {
+                        // Spaces vertically centered in cell
                         if ((by + 1) / 4 == 10 && bx == 2) { // Prevents printing a space on the right of "10" on the label col
                         } else {
-                            cout << " "; // horizontal data in each cell
+                            cout << " "; // horizontal spaces in each cell
                         }
                     } else {
                         cout << " "; // Corner of each cell
@@ -148,6 +166,9 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
                 }
             }
 
+            // This if statement draws characters on the far right side of the table
+            // These will never be data, only ever the top right corner, bottom right corner,
+            // a vertical t, or just a vertical line
             if (by == 0) {
                 cout << BOXDRAW_CORNER_UPRIGHT;
             } else if (by >= (Options::BOARD_SIZE_Y + 1) * 4) {
@@ -157,6 +178,8 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
             } else {
                 cout << BOXDRAW_VERTICAL;
             }
+
+            // Print the gap between the two tables
             cout << "        ";
         }
         cout << endl;
