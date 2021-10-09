@@ -22,11 +22,14 @@ public:
 	//PlayerVisibleGameBoard getPlayerBoard(Player& player);
     vector<vector<vector<vector<BoardPiece*>>>> getGrid() const;
 	friend ostream& operator << (ostream& out, BattleBoatBoard& board);
-
-    bool hasWinner();
+    void privatizeFor(int i);
+    void publicize();
 
 private:
     vector<Boat*> boats;
     vector<Strike*> strikes;
 	vector<vector<vector<vector<BoardPiece*>>>> boardGrid; //4 dimensional array of objects on the gameboard [p][x][y][i]
+    int privateFor{-1};
+
+    bool getPrivateFor();
 };

@@ -44,7 +44,9 @@ void BattleBoatGame::placeBoats(Player& p) {
         int size = boatSizes[i];
         bool placing{true};
         while (placing) { // Loop until boat placed successfully
-            cout << *board << endl << endl; //TODO: swap for printing with a player in context so opponent is hidden
+            board->privatizeFor(turnIndex);
+            cout << *board << endl << endl;
+            board->publicize();
             cout << p << ": Placing " << size << " unit boat. ";
 
             int* boatLocation = ir.promptAndResolveBoardLocation(); // prompts for a location to be entered
@@ -63,6 +65,16 @@ void BattleBoatGame::placeBoats(Player& p) {
             clearTerm();
         }
     }
+
+    board->privatizeFor(turnIndex);
+    cout << *board << endl << endl;
+    board->publicize();
+
+    cout << "Press enter once device is passed to " << *turnOrder[!turnIndex] << ".";
+    string trash;
+    getline(cin, trash);
+
+    clearTerm();
 }
 
 void BattleBoatGame::setupGame() {
@@ -76,9 +88,11 @@ void BattleBoatGame::setupGame() {
 
 void BattleBoatGame::runRound() {
     for (turnIndex = 0; turnIndex < 2; turnIndex++) { // For each player
+        board->privatizeFor(turnIndex);
         cout << *board << endl << endl;
+        board->publicize();
 
-        cout << "Your turn, " << turnOrder[turnIndex] << endl;
+        cout << "Your turn, " << *turnOrder[turnIndex] << endl;
 
         int* loc{nullptr};
         bool placed{false};
@@ -114,6 +128,16 @@ void BattleBoatGame::runRound() {
                 // Should never be reached assuming InputResolver is sanitizing inputs properly
                 cerr << "error in turnaction switch overload!" << endl;
         }
+
+        clearTerm();
+
+        board->privatizeFor(turnIndex);
+        cout << *board << endl << endl;
+        board->publicize();
+
+        cout << "Press enter once device is passed to " << *turnOrder[!turnIndex] << ".";
+        string trash;
+        getline(cin, trash);
 
         clearTerm();
     }

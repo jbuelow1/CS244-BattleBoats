@@ -18,7 +18,7 @@ bool Boat::isSunk() {
     return strikes.size() >= boatSize;
 }
 
-bool Boat::validatePlacement(BattleBoatBoard *b) {
+bool Boat::validatePlacement(BattleBoatBoard *b) { // FIXME: Will not properly catch boats on the edge of the board
     for (int i = 0; i < boatSize; i++) {
         int x,y;
         if (orientation == VERTICAL) {

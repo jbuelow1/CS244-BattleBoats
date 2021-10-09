@@ -144,7 +144,11 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
                                 if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0] && board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
                                     cout << BOXDRAW_HIT; // A hit (boat and strike both present)
                                 } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][0]) {
-                                    cout << BOXDRAW_BOAT; // A boat
+                                    if (board.getPrivateFor() == !p) {
+                                        cout << " "; // An opponent's boat
+                                    } else {
+                                        cout << BOXDRAW_BOAT; // A boat
+                                    }
                                 } else if (board.getGrid()[p][((bx + 1) / 4) - 1][((by + 1) / 4) - 1][1]) {
                                     cout << BOXDRAW_MISS; // A miss
                                 } else {
@@ -189,4 +193,16 @@ std::ostream& operator<<(std::ostream &out, BattleBoatBoard& board) {
 
 vector<vector<vector<vector<BoardPiece *>>>> BattleBoatBoard::getGrid() const {
     return boardGrid;
+}
+
+void BattleBoatBoard::privatizeFor(int p) {
+    privateFor = p;
+}
+
+void BattleBoatBoard::publicize() {
+    privateFor = -1;
+}
+
+bool BattleBoatBoard::getPrivateFor() {
+    return privateFor;
 }
