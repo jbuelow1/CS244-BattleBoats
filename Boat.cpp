@@ -1,4 +1,5 @@
 #include "Boat.h"
+#include "Options.cpp"
 
 Boat::Boat(Player &owner, int location[3], int size, Orientation orientation) : BoardPiece(location) {
     this->boatSize = size;
@@ -18,7 +19,7 @@ bool Boat::isSunk() {
     return strikes.size() >= boatSize;
 }
 
-bool Boat::validatePlacement(BattleBoatBoard *b) { // FIXME: Will not properly catch boats on the edge of the board
+bool Boat::validatePlacement(BattleBoatBoard *b) {
     for (int i = 0; i < boatSize; i++) {
         int x,y;
         if (orientation == VERTICAL) {
@@ -29,7 +30,18 @@ bool Boat::validatePlacement(BattleBoatBoard *b) { // FIXME: Will not properly c
             y = getY();
         }
 
-        if (!(b->getGrid()[getPlayerPos()][x][y][0] == nullptr)) {
+        // Verify that the boat has valid position
+        if (x < 0 || y < 0) {
+            return false;
+        }
+
+        // Verify that the boat does not "hang off" the game board
+        if (x >= Options::BOARD_SIZE_X ||
+            y >= Options::BOARD_SIZE_Y) {
+            return false;
+        }
+
+        if (b->getGrid()[getPlayerPos()][x][y][0] != nullptr) {
             return false;
         }
     }
