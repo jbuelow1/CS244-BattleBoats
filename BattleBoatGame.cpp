@@ -1,6 +1,11 @@
+#include <iostream>
+#include <string>
+
 #include "BattleBoatGame.h"
 #include "Options.cpp"
 #include "Player.h"
+
+using namespace std;
 
 BattleBoatGame::BattleBoatGame() {
     board = new BattleBoatBoard(Options::PLAYER_COUNT, Options::BOARD_SIZE_X, Options::BOARD_SIZE_Y);
